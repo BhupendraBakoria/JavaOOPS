@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Subrtactor implements Callable<Void> {
-    private Value value;
+    private final Value value;
     private ReentrantLock lock;
 
     public Subrtactor(Value value, ReentrantLock lock) {
@@ -15,9 +15,9 @@ public class Subrtactor implements Callable<Void> {
 
     public Void call() throws Exception {
         for (int i =0; i<=100; i++) {
-            lock.lock();
-            value.setValue(value.getValue() - i);
-            lock.unlock();
+            synchronized (value) {
+                value.setValue(value.getValue() - i);
+            }
         }
         return null;
     }

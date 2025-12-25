@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Adder implements Callable<Void> {
-    private Value value;
+    private final Value value;
     private ReentrantLock lock;
 
     public Adder(Value value, ReentrantLock lock) {
@@ -15,9 +15,9 @@ public class Adder implements Callable<Void> {
 
     public Void call() throws Exception {
         for (int i=0; i<=100; i++) {
-            lock.lock();
-            value.setValue(value.getValue() + i);
-            lock.unlock();
+            synchronized (value) {
+                value.setValue(value.getValue() + i);
+            }
         }
         return null;
     }
