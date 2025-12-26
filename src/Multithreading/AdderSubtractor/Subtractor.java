@@ -1,14 +1,13 @@
 package Multithreading.AdderSubtractor;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Subrtactor implements Callable<Void> {
+public class Subtractor implements Callable<Void> {
     private final Value value;
-    private ReentrantLock lock;
+    private final ReentrantLock lock;
 
-    public Subrtactor(Value value, ReentrantLock lock) {
+    public Subtractor(Value value, ReentrantLock lock) {
         this.value = value;
         this.lock = lock;
     }

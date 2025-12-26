@@ -11,12 +11,12 @@ public class Client {
         Value value = new Value();
         ReentrantLock lock = new ReentrantLock(); 
         Adder adder = new Adder(value, lock);
-        Subrtactor subrtactor = new Subrtactor(value, lock);
+        Subtractor subtractor = new Subtractor(value, lock);
 
         ExecutorService executor = Executors.newFixedThreadPool(5);
 
         Future<Void> futureAdder = executor.submit(adder);
-        Future<Void> futureSubtractor = executor.submit(subrtactor);
+        Future<Void> futureSubtractor = executor.submit(subtractor);
 
         futureAdder.get();
         futureSubtractor.get();
