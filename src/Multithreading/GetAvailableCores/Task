@@ -1,0 +1,5 @@
+Problem Statement
+==================
+
+Given an array of 1 million random numbers, divide the array into N chunks (N = number of available cores).
+Figure out how to find the number of available cores.
